@@ -1,8 +1,20 @@
 const router = require('express').Router();
-const Post = require('../../models/Post')
+const {Post, User, Comment} = require('../../models')
 
 router.get('/', async (req, res) => {
-    const postData = await Post.findAll().catch((err) => {
+    const postData = await Post.findAll({
+        include:[ 
+        {
+            model: User,
+            attributes: ['username']
+        },
+        {
+            model: Comment,
+        //     attributes: ['username']
+        }
+        ]
+    })
+    .catch((err) => {
         res.json(err);
     })
     res.json(postData)

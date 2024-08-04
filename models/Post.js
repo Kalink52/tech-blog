@@ -18,7 +18,15 @@ Post.init({
             model: 'user',
             key: 'id'
           }
-    },  
+    },    
+    // comment_id: {
+    //     type: DataTypes.INTEGER,
+    //     allowNull: false,
+    //     references: {
+    //         model: 'comment',
+    //         key: 'id'
+    //       }
+    // },  
     date: {
         type: DataTypes.DATEONLY,
         defaultValue: DataTypes.NOW,
