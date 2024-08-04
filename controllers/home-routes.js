@@ -1,17 +1,27 @@
 const router = require('express').Router();
-const {Post, User, Comment} = require('../models')
+const {Post, User, Comment} = require('../models');
+const withAuth = require('../utils/auth');
 
-router.get('/', async (req,res) => {
-    try{
-
-        res.render('all')
+router.get('/', withAuth, async (req,res) => {
+     try {
+        const userData = await User.findAll({
+          attributes: { exclude: ['password'] },
+          order: [['username', 'ASC']],
+        });
+    
+        const users = userData.map((project) => project.get({ plain: true }));
+    
+        res.render('all', {
+          users,
+          logged_in: req.session.logged_in,
+        });
     }catch (err){
         res.status(505).json(err)
     }
 })
 
 
-router.get('/dashboard', async (req,res) => {
+router.get('/dashboard', withAuth, async (req,res) => {
     try{
         const postData = await Post.findAll({
             include:[ 
@@ -34,7 +44,7 @@ router.get('/dashboard', async (req,res) => {
     
 
 })
-router.get('/dashboard/:id', async (req,res) => {
+router.get('/dashboard/:id', withAuth, async (req,res) => {
     try{
         const postData = await Post.findByPk(req.params.id, {
             include:[
@@ -73,13 +83,5 @@ router.get('/login', async (req,res) => {
     
 })
 
-router.get('/logout', async (req,res) => {
-    try{
 
-
-        res.render('logout')
-    }catch (err){
-        res.status(505).json(err)
-    }
-})
 module.exports = router
