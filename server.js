@@ -1,15 +1,24 @@
-// const path = require('path');
+const path = require('path');
 const express = require('express');
-
-const sequelize = require('./config/connection');
+const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 
 const app = express()
 const PORT = process.env.PORT || 3001;
 
-//middleware
-app.use(express.json());
+const sequelize = require('./config/connection');
 
+const hbs = exphbs.create({}) //helpers goes here
+
+//middleware
+//connects handlebars
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+
+app.use(express.json());
+//allows me to post
+app.use(express.urlencoded({ extended: true}));
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(routes)
 

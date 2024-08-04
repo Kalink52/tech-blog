@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Tech BLog</title>
+  {{!-- <link rel="stylesheet" href="/css/style.css"> --}}
+  {{!-- <script src="https://cdn.jsdelivr.net/npm/add-to-calendar-button@2" async defer></script> --}}
+  <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+
+<header class="border-b border-gray-200 bg-gray-50">
+  <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+    <div class="flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between">
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900 sm:text-3xl">Blog Posts</h1>
+
+        <p class="mt-1.5 text-sm text-gray-500">
+          Where the magic happens.
+        </p>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <button
+          class="inline-flex items-center justify-center gap-1.5 rounded border border-gray-200 bg-white px-5 py-3 text-gray-900 transition hover:text-gray-700 focus:outline-none focus:ring"
+          type="button" id="homebtn"
+        >
+          <span class="text-sm font-medium">  Home </span>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+            />
+          </svg>
+        </button>
+        <button
+          class="inline-flex items-center justify-center gap-1.5 rounded border border-gray-200 bg-white px-5 py-3 text-gray-900 transition hover:text-gray-700 focus:outline-none focus:ring"
+          type="button" id="dashboardbtn"
+        >
+          <span class="text-sm font-medium"> Dashboard </span>
+
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+            />
+          </svg>
+        </button>
+        <button
+          class="inline-block rounded bg-indigo-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-indigo-700 focus:outline-none focus:ring"
+          type="button" id="loginbtn"
+        >
+          Login
+        </button>
+        <button
+          class="inline-flex items-center justify-center gap-1.5 rounded border border-gray-200 bg-white px-5 py-3 text-gray-900 transition hover:text-gray-700 focus:outline-none focus:ring"
+          type="button" id="logoutbtn"
+        >
+          <span class="text-sm font-medium"> Logout </span>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+
+{{!-- <header> 
+<a href="/" class="title"style="text-decoration: none;">tech blog</a>
+<nav>
+    <ul>
+        <li>
+            home
+        </li>
+        <li>
+            Dashboard
+        </li>
+        <li>
+            Login
+        </li>
+        <li>
+            Logout
+        </li>
+    </ul>
+</nav>
+</header> --}}
+
+<main>
+
+  <section id="hb-body">
+    {{{body}}}
+  </section>
+</main>
+</body>
+ <script src="/js/index.js"></script>
+</html>
