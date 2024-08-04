@@ -34,6 +34,34 @@ router.get('/dashboard', async (req,res) => {
     
 
 })
+router.get('/dashboard/:id', async (req,res) => {
+    try{
+        const postData = await Post.findByPk(req.params.id, {
+            include:[
+            {
+                model: User
+            },
+            {
+                model: Comment
+            }
+                
+            ]
+                })
+                
+        const post = postData.get({plain:true})
+        // const commentsData = post.comments
+        // const comments = commentsData.map((comment) => comment.get({plain:true}))\\
+
+        res.render('blogpost',{
+            post,
+            // comments,\
+        })
+    }catch (err){
+        res.status(505).json(err)
+    }
+    
+
+})
 
 router.get('/login', async (req,res) => {
     try{
@@ -47,6 +75,7 @@ router.get('/login', async (req,res) => {
 
 router.get('/logout', async (req,res) => {
     try{
+
 
         res.render('logout')
     }catch (err){
