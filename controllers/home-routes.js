@@ -13,20 +13,20 @@ router.get('/', async (req,res) => {
 
 router.get('/dashboard', async (req,res) => {
     try{
-    //     const postData = await Post.findAll({
-    //         include:[ 
-    //         {
-    //             model: User,
-    //             attributes: ['username']
-    //         },
-    //         ]
-    //     })
+        const postData = await Post.findAll({
+            include:[ 
+            {
+                model: User,
+                attributes: ['username']
+            },
+            ]
+        })
 
         
-    //     const posts = postData.map((post) => post.get({plain:true}))
+        const posts = postData.map((post) => post.get({plain:true}))
 
         res.render('dashboard',{
-            // posts
+            posts
         })
     }catch (err){
         res.status(505).json(err)
