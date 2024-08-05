@@ -1,10 +1,38 @@
-<h1>My dashboard: needs add blog button</h1><!--
+<!--
   Heads up! 👋
 
   This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
 -->
-
-{{!-- <article
+<div class="flex justify-center">
+<button class="btn" onclick="my_modal_3.showModal()">New Post</button>
+<dialog id="my_modal_3" class="modal">
+  <div class="modal-box">
+    <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    </form>
+      <label class="form-control w-full max-w-xs">
+        <div class="label">
+          <span class="label-text">Title:</span>
+        </div>
+        <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" id="title" />
+          <div class="label">
+            <span class="label-text">Content:</span>
+          </div>
+        <textarea id="body" class="textarea textarea-bordered h-24" placeholder="Content"></textarea>
+      </label>
+      <div>
+      <button
+          class="inline-flex items-center justify-center gap-1.5 rounded border border-gray-200 bg-neutral-content px-5 py-3 text-gray-900 transition hover:text-gray-700 focus:outline-none focus:ring "
+          type="button" id="newBlogbtn"
+        >
+        <span class="text-sm font-medium"> Submit </span>
+      </button>
+      </div>
+  </div>
+</dialog>
+</div>
+{{#each user.posts as |post|}}
+<article
   class="rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6"
 >
   <span class="inline-block rounded bg-blue-600 p-2 text-white">
@@ -30,15 +58,12 @@
 
   <a href="#">
     <h3 class="mt-0.5 text-lg font-medium text-gray-900">
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+    {{post.title}} by  {{post.user_id}}
     </h3>
   </a>
 
   <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus pariatur
-    animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem, mollitia
-    itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque dignissimos.
-    Molestias explicabo corporis voluptatem?
+{{post.body}}
   </p>
 
   <a href="#" class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">
@@ -48,4 +73,8 @@
       &rarr;
     </span>
   </a>
-</article> --}}
+</article>
+{{/each}}
+
+
+ <script src="/js/postHandler.js"></script>

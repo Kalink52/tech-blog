@@ -4,16 +4,25 @@ const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, async (req,res) => {
      try {
-        //auth
-        const userData = await User.findAll({
+        //
+        const userData = await User.findByPk(req.session.user_id,{
+            include:[
+                {
+                    model: Comment
+                },
+                {
+                  model: Post
+              }
+            ],
           attributes: { exclude: ['password'] },
           order: [['username', 'ASC']],
         });
-        const users = userData.map((project) => project.get({ plain: true }));
-        // pushing data
+        // const users = userData.map((project) => project.get({ plain: true }));
+        const user = userData.get({plain:true})
+
 
         res.render('all', {
-          users,
+          user,
           logged_in: req.session.logged_in,
         });
     }catch (err){
@@ -37,7 +46,8 @@ router.get('/dashboard', withAuth, async (req,res) => {
         const posts = postData.map((post) => post.get({plain:true}))
 
         res.render('dashboard',{
-            posts
+            posts,
+            logged_in: req.session.logged_in,
         })
     }catch (err){
         res.status(505).json(err)
@@ -66,6 +76,7 @@ router.get('/dashboard/:id', withAuth, async (req,res) => {
         res.render('blogpost',{
             post,
             // comments,\
+          logged_in: req.session.logged_in,
         })
     }catch (err){
         res.status(505).json(err)

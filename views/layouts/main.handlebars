@@ -51,12 +51,14 @@
             />
           </svg>
         </button>
+        {{#unless logged_in}}
         <button
           class="inline-block rounded bg-indigo-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-indigo-700 focus:outline-none focus:ring"
           type="button" id="loginbtn"
         >
           Login
         </button>
+        {{/unless}}
         <button
           class="inline-flex items-center justify-center gap-1.5 rounded border border-gray-200 bg-white px-5 py-3 text-gray-900 transition hover:text-gray-700 focus:outline-none focus:ring"
           type="button" id="logoutbtn"

@@ -24,4 +24,17 @@ router.get('/', async (req, res) => {
  
 })
 
+router.post('/', async (req, res) => {
+    try {
+    const postData = await Post.create({
+        user_id: req.session.user_id,
+        title: req.body.title,
+        body: req.body.body
+    })
+
+    res.status(200).json(postData)
+    } catch (err) {
+        res.status(505).json(err)
+    }
+})
 module.exports = router
