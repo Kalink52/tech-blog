@@ -3,9 +3,11 @@
 
   This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
 -->
+
+{{!-- New Post Modal --}}
 <div class="flex justify-center">
-<button class="btn" onclick="my_modal_3.showModal()">New Post</button>
-<dialog id="my_modal_3" class="modal">
+<button class="btn" onclick="my_modal_999.showModal()">New Post</button>
+<dialog id="my_modal_999" class="modal">
   <div class="modal-box">
     <form method="dialog">
       <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
@@ -14,11 +16,11 @@
         <div class="label">
           <span class="label-text">Title:</span>
         </div>
-        <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" id="title" />
+        <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" id="newBlogTitle" />
           <div class="label">
             <span class="label-text">Content:</span>
           </div>
-        <textarea id="body" class="textarea textarea-bordered h-24" placeholder="Content"></textarea>
+        <textarea id="newBlogBody" class="textarea textarea-bordered h-24" placeholder="Content"></textarea>
       </label>
       <div>
       <button
@@ -31,11 +33,14 @@
   </div>
 </dialog>
 </div>
+
+
 {{#each user.posts as |post|}}
 <article
   class="rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6"
 >
-  <span class="inline-block rounded bg-blue-600 p-2 text-white">
+{{!-- stupid hats --}}
+  {{!-- <span class="inline-block rounded bg-blue-600 p-2 text-white">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       class="h-6 w-6"
@@ -54,25 +59,59 @@
         d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
       />
     </svg>
-  </span>
+  </span> --}}
 
+
+{{!-- Handlebars Title --}}
   <a href="#">
-    <h3 class="mt-0.5 text-lg font-medium text-gray-900">
-    {{post.title}} by  {{post.user_id}}
+    <h3 class="mt-0.5 text-lg font-medium text-gray-90s0">
+    {{post.title}}
     </h3>
   </a>
 
+{{!-- HandleBars Body --}}
   <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
 {{post.body}}
   </p>
 
+{{!-- find more Link  --}}
   <a href="#" class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">
     Find out more
 
-    <span aria-hidden="true" class="block transition-all group-hover:ms-0.5 rtl:rotate-180">
+    {{!-- <span aria-hidden="true" class="block transition-all group-hover:ms-0.5 rtl:rotate-180">
       &rarr;
-    </span>
+    </span> --}}
   </a>
+
+
+    {{!-- Edit post modal --}}
+  <button class="btn" onclick="my_modal_{{id}}.showModal()">Edit</button>
+<dialog id="my_modal_{{id}}" class="modal">
+  <div class="modal-box" id="{{id}}">
+    <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    </form>
+      <label class="form-control w-full max-w-xs">
+        <div class="label">
+          <span class="label-text">Title:</span>
+        </div>
+        <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" id="editBlogTitle" />
+          <div class="label">
+            <span class="label-text">Content:</span>
+          </div>
+        <textarea id="editBlogBody" class="textarea textarea-bordered h-24" placeholder="Content"></textarea>
+      </label>
+      <div>
+      <button
+          class="inline-flex items-center justify-center gap-1.5 rounded border border-gray-200 bg-neutral-content px-5 py-3 text-gray-900 transition hover:text-gray-700 focus:outline-none focus:ring editBlogbtn"
+          type="button" 
+        >Edit
+      </button>
+      </div>
+  </div>
+</dialog>
+<button class="btn deletebtn id_{{id}}"> delete</button>
+
 </article>
 {{/each}}
 

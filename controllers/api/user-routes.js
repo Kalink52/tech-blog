@@ -46,7 +46,7 @@ router.post('/login', async (req,res) => {
           res.json({ user: userData, message: "Welcome! You are logged in." });
         });
 
-        res.render('login')
+        res.render('all')
     }catch (err){
         res.status(505).json(err)
     }

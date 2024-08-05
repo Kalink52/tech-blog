@@ -1,12 +1,15 @@
 const router = require('express').Router();
-const { Post } = require('../../models');
-const Comment = require('../../models/Comment')
+const { Post, Comment, User } = require('../../models');
 
 router.get('/', async (req, res) => {
     const commentData = await Comment.findAll({
         include:[ 
         {
             model: Post,
+            // attributes: ['username']
+        },
+        {
+            model: User,
             // attributes: ['username']
         }
         ]
@@ -29,5 +32,29 @@ router.post('/', async (req, res) => {
         res.status(505).json(err)
     }
 })
+
+
+router.get('/:id', async (req,res) => {
+    try{
+        const postData = await Post.findByPk(req.params.id, {
+            include:[{
+                model: User
+            },]
+        }) 
+        const commentsData = await Comment.findAll({
+            where: { post_id: postData.id},
+            include:[{
+                model: User
+            },
+            ]
+    })
+        res.json(commentsData)
+    }catch (err){
+        res.status(505).json(err)
+    }
+    
+
+})
+
 
 module.exports = router

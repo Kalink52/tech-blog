@@ -8,14 +8,16 @@ router.get('/', withAuth, async (req,res) => {
         const userData = await User.findByPk(req.session.user_id,{
             include:[
                 {
-                    model: Comment
+                    model: Comment,
+                    
                 },
                 {
                   model: Post
               }
-            ],
+            ]
+            ,
           attributes: { exclude: ['password'] },
-          order: [['username', 'ASC']],
+        //   order: {['username', 'ASC']},
         });
         // const users = userData.map((project) => project.get({ plain: true }));
         const user = userData.get({plain:true})
@@ -31,7 +33,8 @@ router.get('/', withAuth, async (req,res) => {
 })
 
 
-router.get('/dashboard', withAuth, async (req,res) => {
+router.get('/dashboard', async (req,res) => {
+    
     try{
         const postData = await Post.findAll({
             include:[ 
@@ -55,27 +58,26 @@ router.get('/dashboard', withAuth, async (req,res) => {
     
 
 })
-router.get('/dashboard/:id', withAuth, async (req,res) => {
+
+router.get('/dashboard/:id', async (req,res) => {
     try{
         const postData = await Post.findByPk(req.params.id, {
+            include:[{
+                model: User
+            }]
+        }) 
+        const commentsData = await Comment.findAll({
+            where: { post_id: postData.id},
             include:[
             {
                 model: User
-            },
-            {
-                model: Comment
-            }
-                
-            ]
-                })
-                
+            }]
+    })
         const post = postData.get({plain:true})
-        // const commentsData = post.comments
-        // const comments = commentsData.map((comment) => comment.get({plain:true}))\\
-
+        const comments = commentsData.map((comment) => comment.get({plain:true}))
         res.render('blogpost',{
             post,
-            // comments,\
+            comments,
           logged_in: req.session.logged_in,
         })
     }catch (err){
@@ -84,6 +86,8 @@ router.get('/dashboard/:id', withAuth, async (req,res) => {
     
 
 })
+
+
 
 router.get('/login', async (req,res) => {
     try{

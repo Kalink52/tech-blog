@@ -1,3 +1,5 @@
+
+
 const homebtn = document.getElementById('homebtn')
 const dashboardbtn = document.getElementById('dashboardbtn')
 const loginbtn = document.getElementById('loginbtn')
@@ -17,3 +19,4 @@ loginbtn.addEventListener('click', () => {
     location.href = "/login"
 })
 }
+
