@@ -3,7 +3,7 @@
 >
 
   <a href="#">
-    <h3 class="text-center mt-0.5 text-4xl font-medium text-gray-900">
+    <h3 id="{{post.id}}" class="text-center mt-0.5 text-4xl font-medium text-gray-900 postid">
       {{post.title}} by {{post.user.username}}
     </h3>
   </a>
@@ -48,7 +48,7 @@
 
   <a href="#">
     <h3 class="mt-0.5 text-lg font-medium text-gray-900">
- {{comment.user_id}} at {{comment.date}}
+ {{comment.user_id}} said at {{comment.date}}
     </h3>
   </a>
 
@@ -58,3 +58,31 @@
 
 </article>
 {{/each}}
+
+
+<div class="flex justify-center">
+<button class="btn" onclick="my_modal_3.showModal()">comment</button>
+<dialog id="my_modal_3" class="modal">
+  <div class="modal-box">
+    <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    </form>
+    <div class="">
+      <label class="form-control w-full ">
+        <div class="label flex-col">
+        <textarea id="body" class="textarea textarea-bordered h-24" placeholder="Content"></textarea>
+      </label>
+      <div>
+      <button
+          class="inline-flex items-center justify-center gap-1.5 rounded border border-gray-200 bg-neutral-content px-5 py-3 text-gray-900 transition hover:text-gray-700 focus:outline-none focus:ring "
+          type="button" id="newBlogbtn"
+        >
+        <span class="text-sm font-medium"> Submit </span>
+      </button>
+      </div>
+    </div>
+  </div>
+</dialog>
+</div>
+
+ <script src="/js/commentHandler.js"></script>
