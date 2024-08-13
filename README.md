@@ -2,9 +2,9 @@
 
 A Model/View/Controller (MVC) blog application using Node, Handlebars, Postgres, Sequelize (ORM), and Sessions
 
-## Description
+## Deployed Link
 
-A blog application, requiring Authentication
+[Click ME](https://gist.github.com/Kalink52/b46a1426937e7750c4138f2b6d616f7c)
 
 ## Table of Contents
 
