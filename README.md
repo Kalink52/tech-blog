@@ -8,11 +8,11 @@ A blog application, requiring Authentication
 
 ## Table of Contents
 
-- [Screenshots](###Screenshots)
-- [Installation](###Installation)
-- [Usage](###Usage)
-- [Licensing](###Licensing)
-- [Contributing](###Contributing)
+- [Screenshots](#Screenshots)
+- [Installation](#Installation)
+- [Usage](#Usage)
+- [Licensing](#Licensing)
+- [Contributing](#Contributing)
 
 ### Screenshots
 
