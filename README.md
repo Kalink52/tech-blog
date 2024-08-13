@@ -4,7 +4,7 @@ A Model/View/Controller (MVC) blog application using Node, Handlebars, Postgres,
 
 ## Deployed Link
 
-[Click ME](https://gist.github.com/Kalink52/b46a1426937e7750c4138f2b6d616f7c)
+[Click ME](https://tech-blog-kisx.onrender.com)
 
 ## Table of Contents
 
