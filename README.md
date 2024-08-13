@@ -42,3 +42,5 @@ After running the program in step 7 you should be able to access the app at http
 This repo is not Licensed.
 
 ### Contributing
+
+If you have any questions about the repo, open an issue or contact me directly at micah.cox52@gmail.com. you can find more of my work at [kalink52](https://github.com/Kalink52)
