@@ -29,7 +29,7 @@ router.get("/", withAuth, async (req, res) => {
   }
 });
 
-router.get("/dashboard", async (req, res) => {
+router.get("/dashboard", withAuth, async (req, res) => {
   try {
     const postData = await Post.findAll({
       include: [
@@ -51,7 +51,7 @@ router.get("/dashboard", async (req, res) => {
   }
 });
 
-router.get("/dashboard/:id", async (req, res) => {
+router.get("/dashboard/:id", withAuth, async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
       include: [
@@ -84,7 +84,7 @@ router.get("/dashboard/:id", async (req, res) => {
 
 router.get("/login", async (req, res) => {
   try {
-    // res.render("");
+    res.render("login");
   } catch (err) {
     res.status(505).json(err);
   }
